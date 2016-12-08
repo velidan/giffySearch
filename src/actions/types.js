@@ -1,1 +1,1 @@
-export const FILTER = 'FILTER';
+export const TEST_TYPE = "TEST_ACTION";
