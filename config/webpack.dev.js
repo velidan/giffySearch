@@ -24,6 +24,10 @@ module.exports = webpackMerge(commonConfig, {
       rootPath: '',
       template: "src/index.ejs"
     }),
+    new webpack.optimize.CommonsChunkPlugin({
+        children: true,
+        async: true,
+    }),
     new CssSourcemapPlugin(),
     new ExtractTextPlugin("[name].css")
   ],

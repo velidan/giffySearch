@@ -28,15 +28,28 @@ module.exports = webpackMerge(commonConfig, {
     }),
     new webpack.NoErrorsPlugin(),
     new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.CommonsChunkPlugin({
+        children: true,
+        async: true,
+    }),
     new webpack.optimize.UglifyJsPlugin({ 
-      compress: {
-        warnings: false
-      },
       mangle: {
         keep_fnames: true
+      },
+      beautify: false,
+      comments: false,
+      compress: {
+          sequences     : true,
+          booleans      : true,
+          loops         : true,
+          unused      : true,
+          warnings    : false,
+          drop_console: true,
+          unsafe      : true
       }
     }),
-    new ExtractTextPlugin("[name].[hash].css"),
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new ExtractTextPlugin("[name].css"),
     new webpack.DefinePlugin({
       "process.env": {
         "ENV": JSON.stringify(ENV)
