@@ -1,4 +1,4 @@
-import React from "react";
+import React, { PropTypes } from "react";
 
 export default class AppComponent extends React.Component {
 
@@ -6,9 +6,9 @@ export default class AppComponent extends React.Component {
 		let res;
 
 		if (process.env.NODE_ENV === "production") {
-			res =  ( <h1>App Component PROD</h1> );
+			res =  ( <main><h1>App Component PROD</h1>{ this.props.children }</main> );
 		} else {
-			res = ( <h1>App Component DEV</h1> );
+			res = ( <main><h1>App Component DEV</h1>{ this.props.children }</main> );
 		}
 
 		return res;
@@ -19,3 +19,7 @@ export default class AppComponent extends React.Component {
 	}
 
 }
+
+AppComponent.propTypes = {
+	children : PropTypes.object
+};
