@@ -1,4 +1,5 @@
 var helpers = require("./helpers"),
+  webpack = require("webpack"),
   webpackMerge = require("webpack-merge"),
   ExtractTextPlugin = require("extract-text-webpack-plugin"),
   commonConfig = require("./webpack.common.js"),
@@ -17,6 +18,8 @@ module.exports = webpackMerge(commonConfig, {
   },
 
   plugins: [
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
     new HtmlWebpackPlugin({
       rootPath: '',
       template: "src/index.ejs"
